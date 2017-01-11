@@ -11,6 +11,13 @@ pom.xml*
 /targets/
 /checkouts/
 
+*.class
+/src/java/swisseph
+/src/java/Sweclips.java
+/src/java/Swemini.java
+/src/java/Swetest.java
+/src/java/Transits.java
+
 .lein-deps-sum
 .lein-env
 .lein-deps-sum
