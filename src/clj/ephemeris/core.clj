@@ -1,2 +1,2 @@
-(ns ephemeris
+(ns ephemeris.core
   (:import (swisseph SwissEph)))
