@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "precompile step"
+pushd "src/java"
+
+if [ ! -d "swisseph" ]; then
+  echo "precompiling ..."
+  javac Precompile.java
+  java Precompile -qfc -iswesrc -iprogs -DTRANSITS
+  javac Swetest.java
+  javac Transits.java
+else
+  echo "swisseph already exists"
+  echo "skipping precompilation"
+fi
+
+popd
+echo "precompile done"
