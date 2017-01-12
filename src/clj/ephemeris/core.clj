@@ -14,7 +14,6 @@
                     (. SweConst SEFLG_SPEED)
                     res
                     err)
-      {what
-        {:lon (aget res 0)
-         :lat (aget res 1)
-         :sdd (aget res 3)}})))
+      {(lookup what) {:lon (aget res 0)
+                      :lat (aget res 1)
+                      :sdd (aget res 3)}})))

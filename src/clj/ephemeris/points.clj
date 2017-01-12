@@ -25,5 +25,9 @@
 
 (defn lookup [what]
   (if (keyword? what)
-    (get (get (deref dat) what) :id)
+    (:id (get (deref dat) what))
     (get (deref rev) what)))
+
+(defn nameit
+  ([key-id] (name key-id :en))
+  ([key-id lang] (lang (get (deref dat) key-id))))
