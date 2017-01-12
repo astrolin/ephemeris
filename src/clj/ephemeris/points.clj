@@ -1,13 +1,16 @@
 (ns ephemeris.points
   (:import (swisseph SweConst)))
 
-(def ^:private db (atom {}))
+(def ^:private dat (atom {}))
+(def ^:private rev (atom {}))
 
 (defn- a
   ([id idn] (a id idn nil))
-  ([id idn greek] (swap! db conj {id {:id idn
-                                      :en (name id)
-                                      :gr greek}})))
+  ([id idn greek]
+   (do (swap! dat conj {id {:id idn
+                            :en (name id)
+                            :gr greek}})
+       (swap! rev conj {idn id}))))
 
 (a :Sun (. SweConst SE_SUN) "Helios")
 (a :Moon (. SweConst SE_MOON) "Selene")
@@ -20,7 +23,7 @@
 (a :Neptune (. SweConst SE_NEPTUNE))
 (a :Pluto (. SweConst SE_PLUTO))
 
-(deref db)
-
 (defn lookup [what]
-  (get (get (deref db) what) :id))
+  (if (keyword? what)
+    (get (get (deref dat) what) :id)
+    (get (deref rev) what)))
