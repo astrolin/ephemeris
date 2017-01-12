@@ -1,4 +1,5 @@
 (ns ephemeris.core
+  (:require [ephemeris.points :refer (lookup)])
   (:import (swisseph SwissEph SweDate SweConst)))
 
 (defn calc-now [what]
@@ -16,7 +17,4 @@
       {what
         {:lon (aget res 0)
          :lat (aget res 1)
-         :lsd (aget res 3)}})))
-
-(comment
-  (calc-now (. SweConst SE_MARS)))
+         :sdd (aget res 3)}})))
