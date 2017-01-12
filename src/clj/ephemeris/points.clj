@@ -1,15 +1,13 @@
 (ns ephemeris.points
-  (:import (swisseph SwissEph SweConst)))
+  (:import (swisseph SweConst)))
 
-(def ^:private sw (SwissEph.))
+(def ^:private db (atom {}))
 
-(def ^:private db (transient {}))
-
-(defn- a [id idx greek]
-  (conj! db {id
-                {:index idx
-                 :name (.swe_get_planet_name sw idx)
-                 :greek greek}}))
+(defn- a
+  ([id idn] (a id idn nil))
+  ([id idn greek] (swap! db conj {id {:id idn
+                                      :en (name id)
+                                      :gr greek}})))
 
 (a :Sun (. SweConst SE_SUN) "Helios")
 (a :Moon (. SweConst SE_MOON) "Selene")
@@ -18,6 +16,11 @@
 (a :Mars (. SweConst SE_MARS) "Ares")
 (a :Jupiter (. SweConst SE_JUPITER) "Zeus")
 (a :Saturn (. SweConst SE_SATURN) "Kronos")
+(a :Uranus (. SweConst SE_URANUS))
+(a :Neptune (. SweConst SE_NEPTUNE))
+(a :Pluto (. SweConst SE_PLUTO))
+
+(deref db)
 
 (defn lookup [what]
-  (get (get db what) :index))
+  (get (get (deref db) what) :id))
