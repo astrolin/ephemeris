@@ -23,11 +23,16 @@
 (a :Neptune (. SweConst SE_NEPTUNE))
 (a :Pluto (. SweConst SE_PLUTO))
 
+(defn- datv [id v] (v (id (deref dat))))
+
 (defn lookup [what]
   (if (keyword? what)
-    (:id (get (deref dat) what))
+    (datv what :id)
     (get (deref rev) what)))
 
 (defn nameit
-  ([key-id] (name key-id :en))
-  ([key-id lang] (lang (get (deref dat) key-id))))
+  ([key-id] (nameit key-id :gr))
+  ([key-id lang] (let [res (datv key-id lang)]
+                   (if (nil? res)
+                     (datv key-id :en)
+                     res))))
