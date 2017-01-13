@@ -2,18 +2,21 @@
   (:require [ephemeris.points :refer (lookup)])
   (:import (swisseph SwissEph SweDate SweConst)))
 
-(defn calc-now [what]
-  (let [sw (SwissEph.)
+(defn calc-now [stuff]
+  (let [s (flatten [stuff])
+        sw (SwissEph.)
         sd (SweDate.)
         jd (.getJulDay sd)
-        res (double-array 6)
-        err (StringBuffer.)]
-    (do
-      (.swe_calc_ut sw jd
-                    what
-                    (. SweConst SEFLG_SPEED)
-                    res
-                    err)
-      {(lookup what) {:lon (aget res 0)
-                      :lat (aget res 1)
-                      :sdd (aget res 3)}})))
+        flag (. SweConst SEFLG_SPEED)]
+    (for [i s]
+      (let [what (if (keyword? i) (lookup i) i)
+            res (double-array 6)
+            err (StringBuffer.)
+            rc (.swe_calc_ut sw jd
+                what
+                flag
+                res
+                err)]
+        {(lookup what) {:lon (aget res 0)
+                        :lat (aget res 1)
+                        :sdd (aget res 3)}}))))
