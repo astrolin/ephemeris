@@ -19,6 +19,12 @@
       true ;; Gregorian Calendar
       true))) ;; checkValidInput
 
+(defn- jd-now []
+  (.getJulDay (SweDate.)))
+
 (defn utc-to-jd
-  ([] (.getJulDay (SweDate.)))
-  ([utc] (get (to-jd (c/from-sql-time (read-instant-timestamp utc))) 1)))
+  ([] (jd-now))
+  ([utc]
+   (if (nil? utc)
+    (jd-now)
+    (get (to-jd (c/from-sql-time (read-instant-timestamp utc))) 1))))

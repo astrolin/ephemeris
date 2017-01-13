@@ -10,10 +10,10 @@
                :angles []
                :houses false})
 
-(defn calc-now [stuff]
+(defn calc [stuff]
   (let [want (merge defaults stuff)
         sw (SwissEph.)
-        jd (utc-to-jd)
+        jd (utc-to-jd (:utc want))
         flag (. SweConst SEFLG_SPEED)]
     (for [i (flatten [(:bodies want)])]
       (let [what (if (known? i) (lookup i) i)
