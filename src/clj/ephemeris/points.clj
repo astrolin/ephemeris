@@ -27,7 +27,7 @@
 
 (defn known? [kwd]
   (if (keyword? kwd)
-    (contains? dat kwd)
+    (contains? (deref dat) kwd)
     false))
 
 (defn lookup [what]
