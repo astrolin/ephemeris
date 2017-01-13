@@ -1,6 +1,8 @@
 (ns ephemeris.core
-  (:require [ephemeris.points :refer (lookup known?)])
-  (:import (swisseph SwissEph SweDate SweConst)))
+  (:require
+    [ephemeris.time :refer (utc-to-jd)]
+    [ephemeris.points :refer (lookup known?)])
+  (:import (swisseph SwissEph SweConst)))
 
 (def defaults {:utc nil
                :geo {:lat nil :lon nil}
@@ -11,8 +13,7 @@
 (defn calc-now [stuff]
   (let [want (merge defaults stuff)
         sw (SwissEph.)
-        sd (SweDate.)
-        jd (.getJulDay sd)
+        jd (utc-to-jd)
         flag (. SweConst SEFLG_SPEED)]
     (for [i (flatten [(:bodies want)])]
       (let [what (if (known? i) (lookup i) i)
