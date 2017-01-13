@@ -1,5 +1,5 @@
 (ns ephemeris.core
-  (:require [ephemeris.points :refer (lookup)])
+  (:require [ephemeris.points :refer (lookup known?)])
   (:import (swisseph SwissEph SweDate SweConst)))
 
 (defn calc-now [stuff]
@@ -9,7 +9,7 @@
         jd (.getJulDay sd)
         flag (. SweConst SEFLG_SPEED)]
     (for [i s]
-      (let [what (if (keyword? i) (lookup i) i)
+      (let [what (if (known? i) (lookup i) i)
             res (double-array 6)
             err (StringBuffer.)
             rc (.swe_calc_ut sw jd

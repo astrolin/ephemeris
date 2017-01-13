@@ -25,6 +25,11 @@
 
 (defn- datv [id v] (v (id (deref dat))))
 
+(defn known? [kwd]
+  (if (keyword? kwd)
+    (contains? dat kwd)
+    false))
+
 (defn lookup [what]
   (if (keyword? what)
     (datv what :id)
