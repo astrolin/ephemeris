@@ -10,6 +10,16 @@
                :angles []
                :houses \O})
 
+(defn- valid-geo? [geo]
+  (if (and
+        (map? geo)
+        (contains? geo :lat)
+        (contains? geo :lon)
+        (number? (:lat geo))
+        (number? (:lon geo)))
+    true
+    false))
+
 (defn calc [stuff]
   (let [want (merge defaults stuff)
         sw (SwissEph.)
@@ -31,7 +41,7 @@
               {(lookup what) {:lon (aget res 0)
                               :lat (aget res 1)
                               :sdd (aget res 3)}})))}
-      (if (not (empty? (:angles want)))
+      (if (valid-geo? (:geo want))
         (let [cusps (double-array 13)
               ascmc (double-array 10)
               rc (.swe_houses sw
