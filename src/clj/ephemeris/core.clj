@@ -70,9 +70,9 @@
                               cusps
                               ascmc)]
           (merge
-            (if (houses? (:houses want))
-              {:houses (zipmap (range 1 13) (rest cusps))}
-              {})
             (if (angles? (:angles want))
               {:angles (subvec (vec ascmc) 0 8)}
+              {})
+            (if (houses? (:houses want))
+              {:houses (zipmap (range 1 13) (rest cusps))}
               {})))))))
