@@ -7,7 +7,7 @@
 (def defaults {:utc nil
                :geo {:lat nil :lon nil}
                :bodies []
-               :angles []
+               :angles true
                :houses "O"})
 
 (defn- geo? [geo]
@@ -69,6 +69,10 @@
                               (int (coerce-houses (:houses want)))
                               cusps
                               ascmc)]
-          (if (houses? (:houses want))
-            {:houses (zipmap (range 1 13) (rest cusps))}
-            {}))))))
+          (merge
+            (if (houses? (:houses want))
+              {:houses (zipmap (range 1 13) (rest cusps))}
+              {})
+            (if (angles? (:angles want))
+              {:angles (subvec (vec ascmc) 0 8)}
+              {})))))))
