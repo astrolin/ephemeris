@@ -8,7 +8,7 @@
                :geo {:lat nil :lon nil}
                :bodies []
                :angles []
-               :houses \O})
+               :houses "O"})
 
 (defn- valid-geo? [geo]
   (if (and
@@ -19,6 +19,15 @@
         (number? (:lon geo)))
     true
     false))
+
+(defn- coerce-houses [hs]
+  (if (= (type hs) java.lang.Character)
+    hs
+    (if (and
+          (= (type hs) java.lang.String)
+          (> (count hs) 0))
+      (get hs 0)
+      \O)))
 
 (defn calc [stuff]
   (let [want (merge defaults stuff)
@@ -49,7 +58,7 @@
                               0 ;; what flag?
                               (:lat (:geo want))
                               (:lon (:geo want))
-                              (int (:houses want))
+                              (int (coerce-houses (:houses want)))
                               cusps
                               ascmc)]
           {:houses (zipmap (range 1 13) (rest cusps))})))))
