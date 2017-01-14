@@ -9,6 +9,9 @@
 ;; https://clj-time.github.io/clj-time/doc/clj-time.core.html
 ;; http://th-mack.de/download/swisseph-doc/swisseph/SweDate.html
 
+(defn- jd-now []
+  (.getJulDay (SweDate.)))
+
 (defn- to-jd [dt]
   (let [sd (SweDate.)]
     (.getJDfromUTC sd
@@ -19,12 +22,9 @@
       true ;; Gregorian Calendar
       true))) ;; checkValidInput
 
-(defn- jd-now []
-  (.getJulDay (SweDate.)))
-
 (defn utc-to-jd
   ([] (jd-now))
   ([utc]
    (if (nil? utc)
-    (jd-now)
-    (get (to-jd (c/from-sql-time (read-instant-timestamp utc))) 1))))
+      (jd-now)
+      (get (to-jd (c/from-sql-time (read-instant-timestamp utc))) 1))))
