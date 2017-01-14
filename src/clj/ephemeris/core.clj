@@ -10,7 +10,7 @@
                :angles []
                :houses "O"})
 
-(defn- valid-geo? [geo]
+(defn- geo? [geo]
   (if (and
         (map? geo)
         (contains? geo :lat)
@@ -19,6 +19,12 @@
         (number? (:lon geo)))
     true
     false))
+
+(defn- angles? [what]
+  (or (= true what) (and (vector? what) (> (count what) 0))))
+
+(defn- houses? [what]
+  (boolean what))
 
 (defn- coerce-houses [hs]
   (if (= (type hs) java.lang.Character)
@@ -50,7 +56,9 @@
               {(lookup what) {:lon (aget res 0)
                               :lat (aget res 1)
                               :sdd (aget res 3)}})))}
-      (if (valid-geo? (:geo want))
+      (if (and (geo? (:geo want))
+               (or (angles? (:angles want))
+                   (houses? (:houses want))))
         (let [cusps (double-array 13)
               ascmc (double-array 10)
               rc (.swe_houses sw
@@ -61,4 +69,6 @@
                               (int (coerce-houses (:houses want)))
                               cusps
                               ascmc)]
-          {:houses (zipmap (range 1 13) (rest cusps))})))))
+          (if (houses? (:houses want))
+            {:houses (zipmap (range 1 13) (rest cusps))}
+            {}))))))
