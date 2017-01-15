@@ -32,18 +32,6 @@
 (defn- angles? [what]
   (or (= true what) (and (vector? what) (> (count what) 0))))
 
-(defn- houses? [what]
-  (boolean what))
-
-(defn- coerce-houses [hs]
-  (if (= (type hs) java.lang.Character)
-    hs
-    (if (and
-          (= (type hs) java.lang.String)
-          (> (count hs) 0))
-      (get hs 0)
-      \O)))
-
 (defn- nice-angles [data wanted]
   (let [sub (subvec (vec data) 0 8)
         all (zipmap
@@ -62,6 +50,18 @@
         {:angles (select-keys all wanted)})
       {})))
 
+(defn- houses? [what]
+  (boolean what))
+
+(defn- coerce-houses [hs]
+  (if (= (type hs) java.lang.Character)
+    hs
+    (if (and
+          (= (type hs) java.lang.String)
+          (> (count hs) 0))
+      (get hs 0)
+      \O)))
+
 (defn- nice-houses [data wanted]
   (if (houses? wanted)
     {:houses (zipmap (range 1 13) (rest data))}
@@ -72,9 +72,6 @@
         want (request stuff)
         flag (. SweConst SEFLG_SPEED)]
     (merge
-      (if (:meta want)
-        {:wanted (dissoc want :meta)}
-        {})
       {:bodies
         (into {}
           (for [i (flatten [(:bodies want)])]
@@ -105,4 +102,5 @@
                               ascmc)]
           (merge
             (nice-angles ascmc (:angles want))
-            (nice-houses cusps (:houses want))))))))
+            (nice-houses cusps (:houses want)))))
+      (if (:meta want) {:wanted (dissoc want :meta)} {}))))
