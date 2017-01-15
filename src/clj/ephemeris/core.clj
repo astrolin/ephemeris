@@ -56,9 +56,16 @@
                :Co-Asc2
                :PolarAsc]
               sub)]
-    (if (= wanted true)
-      all
-      (select-keys all wanted))))
+    (if (angles? wanted)
+      (if (= wanted true)
+        {:angles all}
+        {:angles (select-keys all wanted)})
+      {})))
+
+(defn- nice-houses [data wanted]
+  (if (houses? wanted)
+    {:houses (zipmap (range 1 13) (rest data))}
+    {}))
 
 (defn calc [stuff]
   (let [sw (SwissEph.)
@@ -97,9 +104,5 @@
                               cusps
                               ascmc)]
           (merge
-            (if (angles? (:angles want))
-              {:angles (nice-angles ascmc (:angles want))}
-              {})
-            (if (houses? (:houses want))
-              {:houses (zipmap (range 1 13) (rest cusps))}
-              {})))))))
+            (nice-angles ascmc (:angles want))
+            (nice-houses cusps (:houses want))))))))
