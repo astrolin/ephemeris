@@ -57,7 +57,7 @@
                :PolarAsc]
               sub)]
     (if (angles? wanted)
-      (if (= wanted true)
+      (if (or (= wanted true) (not (vector? wanted)))
         {:angles all}
         {:angles (select-keys all wanted)})
       {})))
