@@ -4,12 +4,20 @@
     [ephemeris.points :refer (lookup known?)])
   (:import (swisseph SwissEph SweConst)))
 
-(def defaults {:utc nil
-               :geo {:lat nil :lon nil}
-               :bodies []
-               :angles true
-               :houses "O"
-               :meta false})
+(def ^:private
+  defaults {:utc nil
+            :geo {:lat nil :lon nil}
+            :bodies []
+            :angles true
+            :houses "O"
+            :meta false})
+
+(defn- request
+  ([] defaults)
+  ([stuff]
+   (let [want (merge defaults stuff)
+         jd (utc-to-jd (:utc want))]
+    (assoc want :jd jd))))
 
 (defn- geo? [geo]
   (if (and
@@ -35,11 +43,6 @@
           (> (count hs) 0))
       (get hs 0)
       \O)))
-
-(defn- request [stuff]
-  (let [want (merge defaults stuff)
-        jd (utc-to-jd (:utc want))]
-    (assoc want :jd jd)))
 
 (defn calc [stuff]
   (let [sw (SwissEph.)
