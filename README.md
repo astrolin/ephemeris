@@ -1,4 +1,3 @@
-swejar
-======
+# ephemeris-api
 
-Swiss Ephemeris for Clojure
+Swiss Ephemeris - Clojure / HTTP
