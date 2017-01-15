@@ -49,6 +49,9 @@
         want (request stuff)
         flag (. SweConst SEFLG_SPEED)]
     (merge
+      (if (:meta want)
+        {:wanted (dissoc want :meta)}
+        {})
       {:bodies
         (into {}
           (for [i (flatten [(:bodies want)])]
@@ -83,7 +86,4 @@
               {})
             (if (houses? (:houses want))
               {:houses (zipmap (range 1 13) (rest cusps))}
-              {}))))
-      (if (boolean (:meta want))
-        {:meta (dissoc want :meta)}
-        {}))))
+              {})))))))
