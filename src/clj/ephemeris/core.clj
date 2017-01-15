@@ -8,7 +8,8 @@
                :geo {:lat nil :lon nil}
                :bodies []
                :angles true
-               :houses "O"})
+               :houses "O"
+               :meta false})
 
 (defn- geo? [geo]
   (if (and
@@ -75,4 +76,7 @@
               {})
             (if (houses? (:houses want))
               {:houses (zipmap (range 1 13) (rest cusps))}
-              {})))))))
+              {}))))
+      (if (boolean (:meta want))
+        {:meta (conj (seq want) {:jd jd})}
+        {}))))
