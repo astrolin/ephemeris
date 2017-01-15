@@ -36,10 +36,14 @@
       (get hs 0)
       \O)))
 
-(defn calc [stuff]
+(defn- request [stuff]
   (let [want (merge defaults stuff)
-        sw (SwissEph.)
-        jd (utc-to-jd (:utc want))
+        jd (utc-to-jd (:utc want))]
+    (assoc want :jd jd)))
+
+(defn calc [stuff]
+  (let [sw (SwissEph.)
+        want (request stuff)
         flag (. SweConst SEFLG_SPEED)]
     (merge
       {:bodies
@@ -49,7 +53,7 @@
                   res (double-array 6)
                   err (StringBuffer.)
                   rc (.swe_calc_ut sw
-                                   jd
+                                   (:jd want)
                                    what
                                    flag
                                    res
@@ -63,8 +67,8 @@
         (let [cusps (double-array 13)
               ascmc (double-array 10)
               rc (.swe_houses sw
-                              jd
-                              0 ;; what flag?
+                              (:jd want)
+                              0 ;; TODO: flags?
                               (:lat (:geo want))
                               (:lon (:geo want))
                               (int (coerce-houses (:houses want)))
@@ -78,5 +82,5 @@
               {:houses (zipmap (range 1 13) (rest cusps))}
               {}))))
       (if (boolean (:meta want))
-        {:meta (conj (seq want) {:jd jd})}
+        {:meta (dissoc want :meta)}
         {}))))
