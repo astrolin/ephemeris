@@ -8,7 +8,7 @@
   defaults {:utc nil
             :geo {:lat nil :lon nil}
             :bodies []
-            :angles true
+            :angles [:Asc :MC]
             :houses "O"
             :meta false})
 
@@ -43,6 +43,22 @@
           (> (count hs) 0))
       (get hs 0)
       \O)))
+
+(defn- nice-angles [data wanted]
+  (let [sub (subvec (vec data) 0 8)
+        all (zipmap
+              [:Asc
+               :MC
+               :ARMC
+               :Vertex
+               :EqualAsc
+               :Co-Asc1
+               :Co-Asc2
+               :PolarAsc]
+              sub)]
+    (if (= wanted true)
+      all
+      (select-keys all wanted))))
 
 (defn calc [stuff]
   (let [sw (SwissEph.)
@@ -82,7 +98,7 @@
                               ascmc)]
           (merge
             (if (angles? (:angles want))
-              {:angles (subvec (vec ascmc) 0 8)}
+              {:angles (nice-angles ascmc (:angles want))}
               {})
             (if (houses? (:houses want))
               {:houses (zipmap (range 1 13) (rest cusps))}
