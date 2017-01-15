@@ -1,3 +1,4 @@
 # ephemeris-api
 
-Swiss Ephemeris - Clojure / HTTP
+>     Swiss Ephemeris library and server
+>     for Clojure backends / HTTP clients
