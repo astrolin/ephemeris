@@ -7,7 +7,7 @@
 (def ^:private
   defaults {:utc nil
             :geo {:lat nil :lon nil}
-            :bodies [:Sun :Moon :Mercury :Venus :Mars :Jupiter :Saturn
+            :points [:Sun :Moon :Mercury :Venus :Mars :Jupiter :Saturn
                      :TrueNode :Uranus :Neptune :Pluto]
             :angles [:Asc :MC]
             :houses "O"
@@ -73,9 +73,9 @@
         want (request stuff)
         flag (. SweConst SEFLG_SPEED)]
     (merge
-      {:bodies
+      {:points
         (into {}
-          (for [i (flatten [(:bodies want)])]
+          (for [i (flatten [(:points want)])]
             (let [what (if (known? i) (lookup i) i)
                   res (double-array 6)
                   err (StringBuffer.)
