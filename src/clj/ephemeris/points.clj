@@ -22,6 +22,7 @@
 (a :Uranus (. SweConst SE_URANUS))
 (a :Neptune (. SweConst SE_NEPTUNE))
 (a :Pluto (. SweConst SE_PLUTO))
+(a :TrueNode (. SweConst SE_TRUE_NODE))
 
 (defn- datv [id v] (v (id (deref dat))))
 

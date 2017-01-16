@@ -7,7 +7,8 @@
 (def ^:private
   defaults {:utc nil
             :geo {:lat nil :lon nil}
-            :bodies []
+            :bodies [:Sun :Moon :Mercury :Venus :Mars :Jupiter :Saturn
+                     :TrueNode :Uranus :Neptune :Pluto]
             :angles [:Asc :MC]
             :houses "O"
             :meta false})
