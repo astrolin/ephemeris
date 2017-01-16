@@ -1,4 +1,4 @@
-(ns ephemeris.points
+(ns ephemeris-api.points
   (:import (swisseph SweConst)))
 
 (def ^:private dat (atom {}))

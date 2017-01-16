@@ -1,7 +1,6 @@
-(ns ephemeris.core
-  (:require
-    [ephemeris.time :refer (utc-to-jd)]
-    [ephemeris.points :refer (lookup known?)])
+(ns ephemeris-api.core
+  (:require [ephemeris-api.time :refer (utc-to-jd)]
+            [ephemeris-api.points :refer (lookup known?)])
   (:import (swisseph SwissEph SweConst)))
 
 (def ^:private

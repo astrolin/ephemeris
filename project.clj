@@ -9,4 +9,4 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [proto-repl "0.3.1"]
                  [clj-time "0.13.0"]]
-  :repl-options {:init-ns ephemeris.core})
+  :repl-options {:init-ns ephemeris-api.core})
