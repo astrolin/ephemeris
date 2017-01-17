@@ -39,10 +39,10 @@
                :MC
                :ARMC
                :Vertex
-               :EqualAsc
-               :Co-Asc1
-               :Co-Asc2
-               :PolarAsc]
+               :EquatAsc ;; equatorial ascendant
+               :Co-Asc1 ;; co-ascendant (W. Koch)
+               :Co-Asc2 ;; co-ascendant (M. Munkasey)
+               :PolarAsc] ;; (M. Munkasey)
               sub)]
     (if (angles? wanted)
       (if (or (= wanted true) (not (vector? wanted)))
