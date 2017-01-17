@@ -11,4 +11,6 @@
        :plugins [[lein-shell "0.5.0"]]
        :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]}
      :repl
-      {:repl-options {:init-ns ephemeris-api.core}}})
+      {:repl-options {:init-ns ephemeris-api.core}
+       :ultra {:repl {:sort-keys false
+                      :map-coll-separator :line}}}})
