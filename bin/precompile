@@ -9,6 +9,10 @@ for i in "$@"; do
     VERBOSE=YES
     shift
     ;;
+    -f|--force)
+    FORCE=YES
+    shift
+    ;;
     *)
     # options for Precompile ...
     ;;
@@ -23,12 +27,13 @@ vecho() {
 
 vecho "precompile step"
 
-if [ ! -d "src/java/ephemeris/swisseph" ]; then
+if [[ ! -d "src/java/ephemeris/swisseph" || $FORCE == "YES" ]]; then
   pushd "src/java/swisseph-${VERSION}"
   echo "precompiling ..."
   javac Precompile.java
   java Precompile -qfc -iswesrc -iprogs -DTRANSITS
   mkdir -p ../ephemeris
+  rm -rf ../ephemeris/swisseph
   cp -r swisseph ../ephemeris/swisseph
   popd
   vecho "precompile done"
