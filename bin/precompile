@@ -1,14 +1,16 @@
 #!/bin/bash
 
 echo "precompile step"
-pushd "src/java"
+pushd "src/java/th-mack"
 
-if [ ! -d "swisseph" ]; then
+if [ ! -d "../swisseph" ]; then
   echo "precompiling ..."
   javac Precompile.java
   java Precompile -qfc -iswesrc -iprogs -DTRANSITS
+  cp -r swisseph ../swisseph
   javac Swetest.java
   javac Transits.java
+
 else
   echo "swisseph already exists"
   echo "skipping precompilation"
