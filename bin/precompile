@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 VERSION="2.01.00-01"
 DIRNAME="$(pwd)/$(DIRNAME "$0")"
