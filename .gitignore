@@ -12,8 +12,12 @@ pom.xml*
 /checkouts/
 
 *.class
-/src/java/th-mack/swisseph
-/src/java/swisseph
+/src/java/ephemeris/swisseph
+/src/java/swisseph*/swisseph
+/src/java/swisseph*/Sweclips.java
+/src/java/swisseph*/Swemini.java
+/src/java/swisseph*/Swetest.java
+/src/java/swisseph*/Transits.java
 
 .lein-deps-sum
 .lein-env

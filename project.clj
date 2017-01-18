@@ -2,7 +2,7 @@
   :description "Swiss Ephemeris for Clojure"
   :min-lein-version  "2.0.0"
   :source-paths      ["src/clj"]
-  :java-source-paths ["src/java/swisseph"]
+  :java-source-paths ["src/java/ephemeris"]
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clj-time "0.13.0"]]
   :profiles

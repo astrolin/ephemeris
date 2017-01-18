@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERSION="2.01.00-01"
+
 # http://stackoverflow.com/questions/192249/
 for i in "$@"; do
   case $i in
@@ -21,18 +23,16 @@ vecho() {
 
 vecho "precompile step"
 
-if [ ! -d "src/java/swisseph" ]; then
-  pushd "src/java/th-mack"
-  vecho "precompiling ..."
+if [ ! -d "src/java/ephemeris/swisseph" ]; then
+  pushd "src/java/swisseph-${VERSION}"
+  echo "precompiling ..."
   javac Precompile.java
   java Precompile -qfc -iswesrc -iprogs -DTRANSITS
-  cp -r swisseph ../swisseph
-  javac Swetest.java
-  javac Transits.java
+  mkdir -p ../ephemeris
+  cp -r swisseph ../ephemeris/swisseph
   popd
+  vecho "precompile done"
 else
   vecho "swisseph already exists"
   vecho "skipping precompilation"
 fi
-
-vecho "precompile done"
