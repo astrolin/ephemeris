@@ -1,6 +1,6 @@
-(ns ephemeris-api.points-test
+(ns ephemeris.points-test
   (:require [clojure.test :refer :all]
-            [ephemeris-api.points :as ps]))
+            [ephemeris.points :as ps]))
 
 (deftest points-test
   (is (= 0 (ps/lookup :Sun)))

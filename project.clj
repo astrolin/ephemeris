@@ -1,4 +1,4 @@
-(defproject ephemeris-api "0.0.1-SNAPSHOT"
+(defproject ephemeris "0.0.1-SNAPSHOT"
   :description "Swiss Ephemeris for Clojure"
   :min-lein-version  "2.0.0"
   :source-paths      ["src/clj"]
@@ -13,6 +13,6 @@
        :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]
        :hooks [leiningen.javac-resources]}
      :repl
-      {:repl-options {:init-ns ephemeris-api.core}
+      {:repl-options {:init-ns ephemeris.core}
        :ultra {:repl {:sort-keys false
                       :map-coll-separator :line}}}})

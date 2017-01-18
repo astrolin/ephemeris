@@ -1,4 +1,4 @@
-(ns ephemeris-api.time
+(ns ephemeris.time
   (:require [clojure.instant :refer (read-instant-timestamp)]
             [clj-time.coerce :as c]
             [clj-time.core :as t])
