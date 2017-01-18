@@ -8,8 +8,10 @@
   :profiles
     {:dev
       {:dependencies [[proto-repl "0.3.1"]]
-       :plugins [[lein-shell "0.5.0"]]
-       :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]}
+       :plugins [[lein-shell "0.5.0"]
+                 [lein-javac-resources "0.1.1"]]
+       :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]
+       :hooks [leiningen.javac-resources]}
      :repl
       {:repl-options {:init-ns ephemeris-api.core}
        :ultra {:repl {:sort-keys false
