@@ -1,20 +1,38 @@
 #!/bin/bash
 
-echo "precompile step"
-pushd "src/java/th-mack"
+# http://stackoverflow.com/questions/192249/
+for i in "$@"; do
+  case $i in
+    -v|--verbose)
+    VERBOSE=YES
+    shift
+    ;;
+    *)
+    # options for Precompile ...
+    ;;
+  esac
+done
 
-if [ ! -d "../swisseph" ]; then
-  echo "precompiling ..."
+vecho() {
+  if [[ $VERBOSE == "YES" ]]; then
+    echo "$1"
+  fi
+}
+
+vecho "precompile step"
+
+if [ ! -d "src/java/swisseph" ]; then
+  pushd "src/java/th-mack"
+  vecho "precompiling ..."
   javac Precompile.java
   java Precompile -qfc -iswesrc -iprogs -DTRANSITS
   cp -r swisseph ../swisseph
   javac Swetest.java
   javac Transits.java
-
+  popd
 else
-  echo "swisseph already exists"
-  echo "skipping precompilation"
+  vecho "swisseph already exists"
+  vecho "skipping precompilation"
 fi
 
-popd
-echo "precompile done"
+vecho "precompile done"
