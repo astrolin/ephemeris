@@ -1,6 +1,8 @@
 #!/bin/bash
 
 VERSION="2.01.00-01"
+DIRNAME="$(pwd)/$(DIRNAME "$0")"
+JAVASRC="${DIRNAME}/../src/java"
 
 # http://stackoverflow.com/questions/192249/
 for i in "$@"; do
@@ -27,14 +29,14 @@ vecho() {
 
 vecho "precompile step"
 
-if [[ ! -d "src/java/ephemeris/swisseph" || $FORCE == "YES" ]]; then
-  pushd "src/java/swisseph-${VERSION}"
+if [[ ! -d "${JAVASRC}/ephemeris/swisseph" || $FORCE == "YES" ]]; then
+  pushd "${JAVASRC}/swisseph-${VERSION}"
   echo "precompiling ..."
   javac Precompile.java
   java Precompile -qfc -iswesrc -iprogs -DTRANSITS
-  mkdir -p ../ephemeris
-  rm -rf ../ephemeris/swisseph
-  cp -r swisseph ../ephemeris/swisseph
+  mkdir -p "${JAVASRC}/ephemeris" # this is in the repo thanks to README.md
+  rm -rf "${JAVASRC}/ephemeris/swisseph"
+  cp -r swisseph "${JAVASRC}/ephemeris/swisseph"
   popd
   vecho "precompile done"
 else
