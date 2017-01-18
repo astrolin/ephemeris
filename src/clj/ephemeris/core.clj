@@ -67,10 +67,12 @@
     {:houses (zipmap (range 1 13) (rest data))}
     {}))
 
-(defn calc [stuff]
-  (let [sw (SwissEph.)
-        want (request stuff)
-        flag (. SweConst SEFLG_SPEED)]
+(defn calc
+  ([] (calc {}))
+  ([stuff]
+   (let [sw (SwissEph.)
+         want (request stuff)
+         flag (. SweConst SEFLG_SPEED)]
     (merge
       {:points
         (into {}
@@ -103,4 +105,4 @@
           (merge
             (nice-angles ascmc (:angles want))
             (nice-houses cusps (:houses want)))))
-      (if (:meta want) {:wanted (dissoc want :meta)} {}))))
+      (if (:meta want) {:wanted (dissoc want :meta)} {})))))
