@@ -18,6 +18,7 @@
                       :map-coll-separator :line}}}
      :uberjar {:aot :all
                :omit-source true}}
+   :main ephemeris.main
    :jar-name "ephemeris.jar"
    :uberjar-name "ephemerist.jar"
    :pom-location "target/"
