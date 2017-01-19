@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ROOTDIR="$(pwd)/$(DIRNAME "$0")/.."
+
+java -jar "${ROOTDIR}/target/ephemerist.jar"
