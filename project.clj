@@ -15,4 +15,5 @@
      :repl
       {:repl-options {:init-ns ephemeris.core}
        :ultra {:repl {:sort-keys false
-                      :map-coll-separator :line}}}})
+                      :map-coll-separator :line}}}
+     :uberjar {:aot :all}})
