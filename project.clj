@@ -20,4 +20,5 @@
                :omit-source true}}
    :jar-name "ephemeris.jar"
    :uberjar-name "ephemerist.jar"
-   :pom-location "target/")
+   :pom-location "target/"
+   :deploy-branches ["master"])
