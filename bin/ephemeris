@@ -7,4 +7,9 @@ if [ ! -f "${UBERJAR}" ]; then
   cd "${ROOTDIR}/bin" && ./uberjar
 fi
 
-java -jar "${UBERJAR}"
+if [ $# -eq 1 ]; then
+  # only takes a single edn options string as the first arg
+  java -jar ${UBERJAR} "$1"
+else
+  java -jar ${UBERJAR}
+fi

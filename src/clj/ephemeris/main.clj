@@ -1,7 +1,11 @@
 (ns ephemeris.main
-  (:require [clojure.pprint :refer (pprint)]
-            [ephemeris.core :refer (calc)])
+  (:require [ephemeris.core :refer (calc)]
+            [clojure.edn :as edn]
+            [clojure.pprint :refer (pprint)])
   (:gen-class))
 
 (defn -main [& args]
-  (pprint (calc)))
+  (pprint
+    (if args
+      (calc (edn/read-string (first args)))
+      (calc))))
