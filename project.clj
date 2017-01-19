@@ -16,4 +16,8 @@
       {:repl-options {:init-ns ephemeris.core}
        :ultra {:repl {:sort-keys false
                       :map-coll-separator :line}}}
-     :uberjar {:aot :all}})
+     :uberjar {:aot :all
+               :omit-source true}}
+   :jar-name "ephemeris.jar"
+   :uberjar-name "ephemerist.jar"
+   :pom-location "target/")
