@@ -1,12 +1,12 @@
 (ns ephemeris.points-test
-  (:require [clojure.test :refer :all]
-            [ephemeris.points :as ps]))
+  (:use [midje.sweet])
+  (:require [ephemeris.points :as ps]))
 
-(deftest points-test
-  (is (= 0 (ps/lookup :Sun)))
-  (is (= :Sun (ps/lookup 0)))
-  (is (nil? (ps/lookup :Unknown)))
-  (is (true? (ps/known? :Sun)))
-  (is (false? (ps/known? :Unknown)))
-  (is (= "Helios" (ps/nameit :Sun)))
-  (is (= "Sun" (ps/nameit :Sun :en))))
+(facts "points"
+  (ps/lookup :Sun) => 0
+  (ps/lookup 0) => :Sun
+  (ps/lookup :Unknown) => nil
+  (ps/known? :Sun) => true
+  (ps/known? :Unknown) => false
+  (ps/nameit :Sun) => "Helios"
+  (ps/nameit :Sun :en) => "Sun")

@@ -7,9 +7,11 @@
                  [clj-time "0.13.0"]]
   :profiles
     {:dev
-      {:dependencies [[proto-repl "0.3.1"]]
+      {:dependencies [[proto-repl "0.3.1"]
+                      [midje "1.8.3" :exclusions [org.clojure/clojure]]]
        :plugins [[lein-shell "0.5.0"]
-                 [lein-javac-resources "0.1.1"]]
+                 [lein-javac-resources "0.1.1"]
+                 [lein-midje "3.2.1"]]
        :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]
        :hooks [leiningen.javac-resources]}
      :repl
@@ -18,6 +20,7 @@
                       :map-coll-separator :line}}}
      :uberjar {:aot :all
                :omit-source true}}
+   :aliases {"test" ["midje"]}
    :main ephemeris.main
    :jar-name "ephemeris.jar"
    :uberjar-name "ephemerist.jar"
