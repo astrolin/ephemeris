@@ -5,6 +5,7 @@ UBERJAR="${ROOTDIR}/target/ephemerist.jar"
 
 if [ ! -f "${UBERJAR}" ]; then
   cd "${ROOTDIR}" && lein uberjar
+  rm -rf "${ROOTDIR}/target/classes/ephemeris"
 fi
 
 java -jar "${UBERJAR}"
