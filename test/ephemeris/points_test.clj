@@ -1,6 +1,6 @@
 (ns ephemeris.points-test
-  (:use [midje.sweet])
-  (:require [ephemeris.points :as ps]))
+  (:require [midje.sweet :refer :all]
+            [ephemeris.points :as ps]))
 
 (facts "points"
   (ps/lookup :Sun) => 0
