@@ -70,7 +70,7 @@
   ([] (calc {}))
   ([stuff]
    (let [want (merge defaults stuff)
-         re (atom {})
+         re (atom {:errors []})
          sw (SwissEph.)
          jd (result re :jd (utc-to-jd (:utc want)))
          flag (. SweConst SEFLG_SPEED)]
@@ -108,3 +108,7 @@
             (nice-houses cusps (:houses want)))))
       (if (:meta want) {:wanted (dissoc want :meta)
                         :result @re})))))
+
+(comment
+  (calc {:utc "1974-06-30T21:45:00Z"
+         :geo {:lat 43.217 :lon 27.917}}))
