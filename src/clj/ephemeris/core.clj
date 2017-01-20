@@ -100,7 +100,7 @@
                               0 ;; TODO: flags?
                               (:lat (:geo want))
                               (:lon (:geo want))
-                              (int (coerce-houses (:houses want)))
+                              (int (result re :houses (coerce-houses (:houses want))))
                               cusps
                               ascmc)]
           (merge
