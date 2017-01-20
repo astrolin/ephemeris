@@ -61,16 +61,20 @@
     {}))
 
 ;; expects an atom map, key, and value to assoc
+;; alternatively, k can be a vector of keys where get-in yields a vector value
 ;; returns the value for further use
 (defn- result [a k v]
-  (do (swap! a assoc k v)
-   v))
+  (if (vector? k)
+    (do (reset! a (assoc-in @a k (conj (get-in @a k) v)))
+      v)
+    (do (swap! a assoc k v)
+      v)))
 
 (defn calc
   ([] (calc {}))
   ([stuff]
    (let [want (merge defaults stuff)
-         re (atom {:errors []})
+         re (atom {:unknown {:angles [] :points []} :errors []})
          sw (SwissEph.)
          jd (result re :jd (utc-to-jd (:utc want)))
          eph (result re :ephemeris :MOSEPH) ;; can become :SWIEPH or :JPLEPH
