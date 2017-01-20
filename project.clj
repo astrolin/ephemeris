@@ -8,7 +8,8 @@
   :profiles
     {:dev
       {:dependencies [[proto-repl "0.3.1"]
-                      [midje "1.8.3" :exclusions [org.clojure/clojure]]]
+                      [midje "1.8.3" :exclusions [org.clojure/clojure]]
+                      [midje-notifier "0.2.0"]]
        :plugins [[lein-shell "0.5.0"]
                  [lein-javac-resources "0.1.1"]
                  [lein-midje "3.2.1"]]
@@ -20,7 +21,8 @@
                       :map-coll-separator :line}}}
      :uberjar {:aot :all
                :omit-source true}}
-   :aliases {"test" ["midje"]}
+   :aliases {"test" ["midje"]
+             "autotest" ["midje" ":autotest"]}
    :main ephemeris.main
    :jar-name "ephemeris.jar"
    :uberjar-name "ephemerist.jar"
