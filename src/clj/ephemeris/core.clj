@@ -64,11 +64,11 @@
 ;; alternatively, k can be a vector of keys where get-in yields a vector value
 ;; returns the value for further use
 (defn- result [a k v]
-  (if (vector? k)
-    (do (reset! a (assoc-in @a k (conj (get-in @a k) v)))
-      v)
-    (do (swap! a assoc k v)
-      v)))
+  (do
+    (if (vector? k)
+      (reset! a (assoc-in @a k (conj (get-in @a k) v)))
+      (swap! a assoc k v))
+    v))
 
 (defn calc
   ([] (calc {}))
