@@ -73,6 +73,7 @@
          re (atom {:errors []})
          sw (SwissEph.)
          jd (result re :jd (utc-to-jd (:utc want)))
+         eph (result re :ephemeris :MOSEPH) ;; can become :SWIEPH or :JPLEPH
          flag (. SweConst SEFLG_SPEED)]
     (merge
       {:points
