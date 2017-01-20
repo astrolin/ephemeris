@@ -1,6 +1,7 @@
 (ns ephemeris.core
   (:require [ephemeris.time :refer (utc-to-jd)]
-            [ephemeris.points :refer (lookup known?)])
+            [ephemeris.points :refer (lookup known?)]
+            [clojure.set :refer (difference)])
   (:import (swisseph SwissEph SweConst)))
 
 (def ^:private
@@ -25,7 +26,7 @@
 (defn- angles? [what]
   (or (= true what) (and (vector? what) (> (count what) 0))))
 
-(defn- nice-angles [data wanted]
+(defn- nice-angles [data wanted re]
   (let [sub (subvec (vec data) 0 8)
         all (zipmap
               [:Asc
@@ -40,7 +41,11 @@
     (if (angles? wanted)
       (if (or (= wanted true) (not (vector? wanted)))
         {:angles all}
-        {:angles (select-keys all wanted)})
+        (do
+          (let [unknown (difference (set wanted) (set (keys all)))]
+            (if (< 0 (count unknown))
+              (result re [:unknown :angles] (vec unknown))))
+          {:angles (select-keys all wanted)}))
       {})))
 
 (defn- houses? [what]
@@ -111,7 +116,7 @@
                               cusps
                               ascmc)]
           (merge
-            (nice-angles ascmc (:angles want))
+            (nice-angles ascmc (:angles want) re)
             (nice-houses cusps (:houses want)))))
       (if (:meta want) {:wanted (dissoc want :meta)
                         :result @re})))))
@@ -119,4 +124,5 @@
 (comment
   (calc {:points [:Sun :NA]})
   (calc {:utc "1974-06-30T21:45:00Z"
-         :geo {:lat 43.217 :lon 27.917}}))
+         :geo {:lat 43.217 :lon 27.917}
+         :angles [:Asc :MC :NA]}))
