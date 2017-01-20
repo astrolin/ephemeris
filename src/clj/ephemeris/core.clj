@@ -83,18 +83,20 @@
       {:points
         (into {}
           (for [i (flatten [(:points want)])]
-            (let [what (if (known? i) (lookup i) i)
-                  res (double-array 6)
-                  err (StringBuffer.)
-                  rc (.swe_calc_ut sw
-                                   jd
-                                   what
-                                   flag
-                                   res
-                                   err)]
-              {(lookup what) {:lon (aget res 0)
-                              :lat (aget res 1)
-                              :sdd (aget res 3)}})))}
+            (if (and (not (known? i)) (keyword? i))
+              (do (result re [:unknown :points] i) {})
+              (let [what (if (known? i) (lookup i) i)
+                    res (double-array 6)
+                    err (StringBuffer.)
+                    rc (.swe_calc_ut sw
+                                     jd
+                                     what
+                                     flag
+                                     res
+                                     err)]
+                {(lookup what) {:lon (aget res 0)
+                                :lat (aget res 1)
+                                :sdd (aget res 3)}}))))}
       (if (and (geo? (:geo want))
                (or (angles? (:angles want))
                    (houses? (:houses want))))
@@ -115,5 +117,6 @@
                         :result @re})))))
 
 (comment
+  (calc {:points [:Sun :NA]})
   (calc {:utc "1974-06-30T21:45:00Z"
          :geo {:lat 43.217 :lon 27.917}}))
