@@ -14,10 +14,10 @@
                  [lein-javac-resources "0.1.1"]
                  [lein-midje "3.2.1"]]
        :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]
-       :hooks [leiningen.javac-resources]}
+       :hooks [leiningen.javac-resources]
+       :repl-options {:init-ns ephemeris.core}}
      :repl
-      {:repl-options {:init-ns ephemeris.core}
-       :ultra {:repl {:sort-keys false
+      {:ultra {:repl {:sort-keys false
                       :map-coll-separator :line}}}
      :uberjar {:aot :all
                :omit-source true}}

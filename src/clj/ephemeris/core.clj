@@ -12,7 +12,7 @@
             :houses "O"
             :meta false})
 
-(defn- request
+(defn- prepare
   ([] defaults)
   ([stuff]
    (let [want (merge defaults stuff)
@@ -71,7 +71,7 @@
   ([] (calc {}))
   ([stuff]
    (let [sw (SwissEph.)
-         want (request stuff)
+         want (prepare stuff)
          flag (. SweConst SEFLG_SPEED)]
     (merge
       {:points
