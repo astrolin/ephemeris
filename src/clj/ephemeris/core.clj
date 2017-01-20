@@ -10,14 +10,7 @@
                      :TrueNode :Uranus :Neptune :Pluto]
             :angles [:Asc :MC]
             :houses "O"
-            :meta false})
-
-(defn- prepare
-  ([] defaults)
-  ([stuff]
-   (let [want (merge defaults stuff)
-         jd (utc-to-jd (:utc want))]
-    (assoc want :jd jd))))
+            :meta true})
 
 (defn- geo? [geo]
   (if (and
@@ -67,11 +60,19 @@
     {:houses (zipmap (range 1 13) (rest data))}
     {}))
 
+;; expects an atom map, key, and value to assoc
+;; returns the value for further use
+(defn- result [a k v]
+  (do (swap! a assoc k v)
+   v))
+
 (defn calc
   ([] (calc {}))
   ([stuff]
-   (let [sw (SwissEph.)
-         want (prepare stuff)
+   (let [want (merge defaults stuff)
+         re (atom {})
+         sw (SwissEph.)
+         jd (result re :jd (utc-to-jd (:utc want)))
          flag (. SweConst SEFLG_SPEED)]
     (merge
       {:points
@@ -81,7 +82,7 @@
                   res (double-array 6)
                   err (StringBuffer.)
                   rc (.swe_calc_ut sw
-                                   (:jd want)
+                                   jd
                                    what
                                    flag
                                    res
@@ -95,7 +96,7 @@
         (let [cusps (double-array 13)
               ascmc (double-array 10)
               rc (.swe_houses sw
-                              (:jd want)
+                              jd
                               0 ;; TODO: flags?
                               (:lat (:geo want))
                               (:lon (:geo want))
@@ -105,4 +106,5 @@
           (merge
             (nice-angles ascmc (:angles want))
             (nice-houses cusps (:houses want)))))
-      (if (:meta want) {:wanted (dissoc want :meta)} {})))))
+      (if (:meta want) {:wanted (dissoc want :meta)
+                        :result @re})))))
