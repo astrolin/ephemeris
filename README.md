@@ -12,7 +12,11 @@ lein repl
 
 There is a single `calc` function in `ephemeris.core` that does it all.
 
-Here are the defaults it uses:
+```clojure
+(calc) ;; give it a map of what you would like, merged into the defaults
+```
+
+Here are the defaults as a template to override:
 
 ```edn
 {:utc nil
@@ -24,19 +28,14 @@ Here are the defaults it uses:
  :meta true}
 ```
 
-In `ephemeris.core`, the default namespace:
-
-```clojure
-(calc) ;; give it a map, merged into the defaults above
-```
-
 ### CLI
 
-This is just for testing purposes.  You can provide a `'string'` argument.
+This is just for testing purposes.
+You can give it a `'string'` arg, in edn format (see example above).
 It's full-featured, though also slow due to JVM warm-up time.
 
 ```sh
-bin/ephemeris
+bin/ephemeris '{}'
 ```
 
 ## TEST
@@ -44,6 +43,16 @@ bin/ephemeris
 ```sh
 lein test
 ```
+
+## LACKS
+
+The following features are still missing.
+Some will be added soon and others later.
+
+- Siderial
+- Fixed Stars
+- Prenatal Lunation
+- Testimonies
 
 ## LICENSE
 
