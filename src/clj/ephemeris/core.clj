@@ -71,7 +71,9 @@
 (defn- result [a k v]
   (do
     (if (vector? k)
-      (reset! a (assoc-in @a k (conj (get-in @a k) v)))
+      (reset! a (assoc-in @a k (if (vector? v)
+                                   (vec (flatten (conj (get-in @a k) v)))
+                                   (conj (get-in @a k) v))))
       (swap! a assoc k v))
     v))
 
