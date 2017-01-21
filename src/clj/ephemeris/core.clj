@@ -13,6 +13,18 @@
             :houses "O"
             :meta true})
 
+;; expects an atom map, key, and value to assoc
+;; alternatively, k can be a vector of keys where get-in yields a vector value
+;; returns the value for further use
+(defn- result [a k v]
+  (do
+    (if (vector? k)
+      (reset! a (assoc-in @a k (if (vector? v)
+                                   (vec (flatten (conj (get-in @a k) v)))
+                                   (conj (get-in @a k) v))))
+      (swap! a assoc k v))
+    v))
+
 (defn- geo? [geo]
   (if (and
         (map? geo)
@@ -64,18 +76,6 @@
   (if (houses? wanted)
     {:houses (zipmap (range 1 13) (rest data))}
     {}))
-
-;; expects an atom map, key, and value to assoc
-;; alternatively, k can be a vector of keys where get-in yields a vector value
-;; returns the value for further use
-(defn- result [a k v]
-  (do
-    (if (vector? k)
-      (reset! a (assoc-in @a k (if (vector? v)
-                                   (vec (flatten (conj (get-in @a k) v)))
-                                   (conj (get-in @a k) v))))
-      (swap! a assoc k v))
-    v))
 
 (defn calc
   ([] (calc {}))

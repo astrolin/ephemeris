@@ -1,3 +1,3 @@
 # ephemeris
 
->     Swiss Ephemeris for Clojure
+> Swiss Ephemeris for Clojure
