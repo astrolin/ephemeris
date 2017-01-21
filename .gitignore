@@ -19,11 +19,10 @@ pom.xml*
 /src/java/swisseph*/Swetest.java
 /src/java/swisseph*/Transits.java
 
-.lein-deps-sum
 .lein-env
+.lein-plugins
 .lein-deps-sum
 .lein-failures
-.lein-plugins
 .lein-repl-history
 
 .nrepl-port
