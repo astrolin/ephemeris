@@ -16,10 +16,10 @@ lein repl
 There is a single `calc` function in `ephemeris.core` that does it all.
 
 ```clojure
-(calc) ;; give it a map of what you would like, merged into the defaults
+(calc) ;; give it a map of what you'd like to get - merged into the defaults
 ```
 
-Here are the defaults as a template to override:
+Here are the current `defaults` as a template to override with what's wanted:
 
 ```edn
 {:utc nil
@@ -51,10 +51,15 @@ Run `lein test` or better `lein autotest`.
 The following features are still missing.
 Some will be added soon and others later.
 
-- Siderial
+- `:ephemeris` option `:SWIEPH` or `:JPLEPH`
+- `:siderial true`
+- schema validation for `calc`
 - Fixed Stars
 - Prenatal Lunation
 - Testimonies
+
+Anything else so far needed for practice of astrology,
+I believe can be derived without need of an ephemeris.
 
 ## LICENSE
 
