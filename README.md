@@ -2,6 +2,9 @@
 
 > Swiss Ephemeris for Clojure
 
+This library is based on the Swiss Ephemeris port to Java by Thomas Mack.
+The code of v[2.01.00-01](http://th-mack.de/international/download) is included.
+
 ## USE
 
 ### Clojure
@@ -32,6 +35,7 @@ Here are the defaults as a template to override:
 
 This is just for testing purposes.
 You can give it a `'string'` arg, in edn format (see example above).
+
 It's full-featured, though also slow due to JVM warm-up time.
 
 ```sh
@@ -40,9 +44,7 @@ bin/ephemeris '{}'
 
 ## TEST
 
-```sh
-lein test
-```
+Run `lein test` or better `lein autotest`.
 
 ## LACKS
 
