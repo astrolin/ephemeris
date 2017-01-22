@@ -3,7 +3,14 @@
 > Swiss Ephemeris for Clojure
 
 This library is based on the Swiss Ephemeris port to Java by Thomas Mack.
-The code of v[2.01.00-01](http://th-mack.de/international/download) is included.
+The source code of v[2.01.00-01](http://th-mack.de/international/download)
+is included, compiled and packaged.  I guess any JVM-based language
+can use this ephemeris if there is interest, mostly for convenience.
+
+## REQUIRED
+
+- Java / JDK `1.6`, `1.7`, or `1.8`
+- [Leiningen](https://leiningen.org)
 
 ## USE
 
@@ -34,12 +41,13 @@ Here are the current `defaults` as a template to override with what's wanted:
 ### CLI
 
 This is just for testing purposes.
-You can give it a `'string'` arg, in edn format (see example above).
+You can give it a `'string'` map, in `edn` data format, see the defaults above.
 
 It's full-featured, though also slow due to JVM warm-up time.
 
 ```sh
-bin/ephemeris '{}'
+bin/ephemeris
+bin/ephemeris '{}' # produces same result as the above
 ```
 
 ## TEST
@@ -51,9 +59,9 @@ Run `lein test` or better `lein autotest`.
 The following features are still missing.
 Some will be added soon and others later.
 
-- `:ephemeris` option `:SWIEPH` or `:JPLEPH`
-- `:siderial true`
-- schema validation for `calc`
+- Precision `:ephemeris` option `:SWIEPH` or `:JPLEPH`
+- Precession `:siderial true` or specify `:ayanamsha`
+- Schema validation for `calc` parameter
 - Fixed Stars
 - Prenatal Lunation
 - Testimonies
