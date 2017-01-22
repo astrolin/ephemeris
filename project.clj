@@ -30,4 +30,8 @@
    :jar-name "ephemeris.jar"
    :uberjar-name "ephemerist.jar"
    :pom-location "target/"
-   :deploy-branches ["master"])
+   :deploy-branches ["master"]
+   :deploy-repositories [["releases"
+                          {:url "https://clojars.org/repo"
+                           :sign-releases false
+                           :creds :gpg}]])
