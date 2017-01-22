@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOTDIR="$(pwd)/$(DIRNAME "$0")/.."
+ROOTDIR="$(pwd)/$(dirname "$0")/.."
 UBERJAR="${ROOTDIR}/target/ephemerist.jar"
 
 if [ ! -f "${UBERJAR}" ]; then
