@@ -1,4 +1,4 @@
-(defproject ephemeris "0.0.1"
+(defproject ephemeris "0.1.0-SNAPSHOT"
   :description "Swiss Ephemeris for Clojure"
   :url "https://github.com/astrolet/ephemeris"
   :license {:name "GPL v2+ or Swiss Ephemeris"

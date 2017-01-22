@@ -14,6 +14,8 @@ can use this ephemeris if there is interest.
 
 ## Use
 
+[![Clojars Project](http://clojars.org/ephemeris/latest-version.svg)](http://clojars.org/ephemeris)
+
 ### Clojure
 
 ```sh
