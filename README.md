@@ -7,12 +7,12 @@ The source code of v[2.01.00-01](http://th-mack.de/international/download)
 is included, compiled and packaged.  I guess any JVM-based language
 can use this ephemeris if there is interest, mostly for convenience.
 
-## REQUIRED
+## Required
 
 - Java / JDK `1.6`, `1.7`, or `1.8`
 - [Leiningen](https://leiningen.org)
 
-## USE
+## Use
 
 ### Clojure
 
@@ -38,7 +38,7 @@ Here are the current `defaults` as a template to override with what's wanted:
  :meta true}
 ```
 
-### CLI
+### cli
 
 This is just for testing purposes.
 You can give it a `'string'` map, in `edn` data format, see the defaults above.
@@ -50,11 +50,11 @@ bin/ephemeris
 bin/ephemeris '{}' # produces same result as the above
 ```
 
-## TEST
+## Test
 
 Run `lein test` or better `lein autotest`.
 
-## LACKS
+## Lacks
 
 The following features are still missing.
 Some will be added soon and others later.
@@ -69,7 +69,7 @@ Some will be added soon and others later.
 Anything else so far needed for practice of astrology,
 I believe can be derived without need of an ephemeris.
 
-## LICENSE
+## License
 
 [GPL v2+](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) or
 [Swiss Ephemeris](http://www.astro.com/swisseph)
