@@ -122,9 +122,3 @@
             (nice-houses cusps (:houses want)))))
       (if (:meta want) {:wanted (dissoc want :meta)
                         :result @re})))))
-
-(comment
-  (calc {:points [:Sun :NA]})
-  (calc {:utc "1974-06-30T21:45:00Z"
-         :geo {:lat 43.217 :lon 27.917}
-         :angles [:Asc :MC :NA]}))
