@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd "$(pwd)/$(dirname "$0")/.."
+lein uberjar
+rm -rf "target/classes/ephemeris" # or it would break proto-repl

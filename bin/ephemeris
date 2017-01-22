@@ -1,0 +1,15 @@
+#!/bin/bash
+
+ROOTDIR="$(pwd)/$(dirname "$0")/.."
+UBERJAR="${ROOTDIR}/target/ephemerist.jar"
+
+if [ ! -f "${UBERJAR}" ]; then
+  cd "${ROOTDIR}/bin" && ./uberjar
+fi
+
+if [ $# -eq 1 ]; then
+  # only takes a single edn options string as the first arg
+  java -jar ${UBERJAR} "$1"
+else
+  java -jar ${UBERJAR}
+fi

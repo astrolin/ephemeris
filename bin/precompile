@@ -1,0 +1,46 @@
+#!/bin/bash
+
+VERSION="2.01.00-01"
+DIRNAME="$(pwd)/$(dirname "$0")"
+JAVASRC="${DIRNAME}/../src/java"
+SOURCES="ephemeris"
+
+# http://stackoverflow.com/questions/192249/
+for i in "$@"; do
+  case $i in
+    -v|--verbose)
+    VERBOSE=YES
+    shift
+    ;;
+    -f|--force)
+    FORCE=YES
+    shift
+    ;;
+    *)
+    # options for Precompile ...
+    ;;
+  esac
+done
+
+vecho() {
+  if [[ $VERBOSE == "YES" ]]; then
+    echo "$1"
+  fi
+}
+
+vecho "precompile step"
+
+if [[ ! -d "${JAVASRC}/${SOURCES}/swisseph" || $FORCE == "YES" ]]; then
+  pushd "${JAVASRC}/swisseph-${VERSION}"
+  echo "precompiling ..."
+  javac Precompile.java
+  java -classpath . Precompile -qfc -iswesrc -iprogs -DTRANSITS
+  mkdir -p "${JAVASRC}/${SOURCES}" # can skip this - in the repo thanks to README.md
+  rm -rf "${JAVASRC}/${SOURCES}/swisseph"
+  cp -r swisseph "${JAVASRC}/${SOURCES}/swisseph"
+  popd
+  vecho "precompile done"
+else
+  vecho "swisseph already exists"
+  vecho "skipping precompilation"
+fi
