@@ -34,7 +34,7 @@ if [[ ! -d "${JAVASRC}/${SOURCES}/swisseph" || $FORCE == "YES" ]]; then
   pushd "${JAVASRC}/swisseph-${VERSION}"
   echo "precompiling ..."
   javac Precompile.java
-  java Precompile -qfc -iswesrc -iprogs -DTRANSITS
+  java -classpath . Precompile -qfc -iswesrc -iprogs -DTRANSITS
   mkdir -p "${JAVASRC}/${SOURCES}" # can skip this - in the repo thanks to README.md
   rm -rf "${JAVASRC}/${SOURCES}/swisseph"
   cp -r swisseph "${JAVASRC}/${SOURCES}/swisseph"
