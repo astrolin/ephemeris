@@ -40,7 +40,7 @@ Here are the current `defaults` as a template to override with what's wanted:
  :meta true}
 ```
 
-### cli
+### CLI
 
 This is just for testing purposes.
 You can give it a `'string'` map, in `edn` data format, see the defaults above.
