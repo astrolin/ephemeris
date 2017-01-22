@@ -1,5 +1,8 @@
 (defproject ephemeris "0.0.1"
   :description "Swiss Ephemeris for Clojure"
+  :url "https://github.com/astrolet/ephemeris"
+  :license {:name "GPL v2+ or Swiss Ephemeris"
+            :url "https://github.com/astrolet/ephemeris/blob/active/LICENSE"}
   :min-lein-version  "2.0.0"
   :source-paths      ["src/clj"]
   :java-source-paths ["src/java/ephemeris"]
@@ -27,4 +30,8 @@
    :jar-name "ephemeris.jar"
    :uberjar-name "ephemerist.jar"
    :pom-location "target/"
-   :deploy-branches ["master"])
+   :deploy-branches ["master"]
+   :deploy-repositories [["releases"
+                          {:url "https://clojars.org/repo"
+                           :sign-releases false
+                           :creds :gpg}]])
