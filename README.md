@@ -1,11 +1,11 @@
-# ephemeris [![CircleCI](https://circleci.com/gh/astrolet/ephemeris/tree/active.svg?style=shield&circle-token=201676e3ede03d8bb18e92648dee447450ea5891)](https://circleci.com/gh/astrolet/ephemeris/tree/active)
+# ephemeris [![Build Status](https://circleci.com/gh/astrolet/ephemeris/tree/active.svg?style=shield&circle-token=201676e3ede03d8bb18e92648dee447450ea5891)](https://circleci.com/gh/astrolet/ephemeris/tree/active)
 
 > Swiss Ephemeris for Clojure
 
 This library is based on the Swiss Ephemeris port to Java by Thomas Mack.
 The source code of v[2.01.00-01](http://th-mack.de/international/download)
 is included, compiled and packaged.  I guess any JVM-based language
-can use this ephemeris if there is interest, mostly for convenience.
+can use this ephemeris if there is interest.
 
 ## Required
 
@@ -43,7 +43,7 @@ Here are the current `defaults` as a template to override with what's wanted:
 This is just for testing purposes.
 You can give it a `'string'` map, in `edn` data format, see the defaults above.
 
-It's full-featured, though also slow due to JVM warm-up time.
+It's full-featured, though also slow due to JVM startup time.
 
 ```sh
 bin/ephemeris

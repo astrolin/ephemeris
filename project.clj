@@ -1,4 +1,4 @@
-(defproject ephemeris "0.0.1-SNAPSHOT"
+(defproject ephemeris "0.0.1"
   :description "Swiss Ephemeris for Clojure"
   :min-lein-version  "2.0.0"
   :source-paths      ["src/clj"]
