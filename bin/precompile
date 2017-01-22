@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="2.01.00-01"
-DIRNAME="$(pwd)/$(DIRNAME "$0")"
+DIRNAME="$(pwd)/$(dirname "$0")"
 JAVASRC="${DIRNAME}/../src/java"
 SOURCES="ephemeris"
 
