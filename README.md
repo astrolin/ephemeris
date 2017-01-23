@@ -61,6 +61,7 @@ Run `lein test` or better `lein autotest`.
 The following features are still missing.
 Some will be added soon and others later.
 
+- Error Handling
 - Precision `:ephemeris` option `:SWIEPH` or `:JPLEPH`
 - Precession `:siderial true` or specify `:ayanamsha`
 - Schema validation for `calc` parameter
