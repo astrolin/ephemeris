@@ -40,6 +40,13 @@ Here are the current `defaults` as a template to override with what's wanted:
  :meta true}
 ```
 
+Without geo-location coordinates it returns the current planet positions.
+
+The time parameter `:utc` can be a string in
+[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) or
+[RFC 3339](https://tools.ietf.org/html/rfc3339#section-5.6) format
+which include ability to specify timezone.
+
 ### CLI
 
 This is just for testing purposes.
@@ -65,6 +72,7 @@ Some will be added soon and others later.
 - Precision `:ephemeris` option `:SWIEPH` or `:JPLEPH`
 - Precession `:siderial true` or specify `:ayanamsha`
 - Schema validation for `calc` parameter
+- House :System keywords would be better
 - Fixed Stars
 - Prenatal Lunation
 - Testimonies
