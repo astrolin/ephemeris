@@ -40,7 +40,7 @@ Here are the current `defaults` as a template to override with what's wanted:
  :meta true}
 ```
 
-Without geo-location coordinates it returns the current planet positions.
+Without geo-location coordinates it returns the current (i.e. mundane) planet positions.
 
 The time parameter `:utc` can be a string in
 [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) or
