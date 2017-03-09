@@ -68,6 +68,10 @@ Run `lein test` or better `lein autotest`.
 The following features are still missing.
 Some will be added soon and others later.
 
+- Accept `:geo` location in more formats:
+  1. [ISO 6709](https://en.wikipedia.org/wiki/ISO_6709) string
+  2. Vector of numbers `[43.22 27.92]` lat & lon -- are fixed in that order
+  3. Vector of strings `["43n13" "27e55"]` oldschool -- lat & lon in either order (parse & id with `'N'`, `'E'`, `'S'`, `'W'`)
 - Error Handling
 - Precision `:ephemeris` option `:SWIEPH` or `:JPLEPH`
 - Precession `:siderial true` or specify `:ayanamsha`
