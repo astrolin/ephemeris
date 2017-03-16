@@ -1,4 +1,4 @@
-# ephemeris [![Build Status](https://circleci.com/gh/astrolin/ephemeris/tree/active.svg?style=shield&circle-token=201676e3ede03d8bb18e92648dee447450ea5891)](https://circleci.com/gh/astrolin/ephemeris/tree/active)
+# ephemeris [![Build Status](https://circleci.com/gh/astrolin/ephemeris/tree/active.svg?style=shield)](https://circleci.com/gh/astrolin/ephemeris/tree/active)
 
 > Swiss Ephemeris for Clojure
 
