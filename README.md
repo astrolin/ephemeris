@@ -84,7 +84,7 @@ Some will be added soon and others later.
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Anything else so far needed for practice of astrology,
-I believe can be derived without an ephemeris providing it.
+I believe could be derived without an ephemeris providing it.
 
 ## License
 
