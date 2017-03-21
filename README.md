@@ -7,6 +7,9 @@ The source code of v[2.01.00-01](http://th-mack.de/international/download)
 is included, compiled and packaged.  I guess any JVM-based language
 can use this ephemeris if there is interest.
 
+To use it with just about any programming language -
+take a look at [ephemeris-api](https://github.com/astrolin/ephemeris-api).
+
 ## Required
 
 - Java / JDK `1.6`, `1.7`, or `1.8`
