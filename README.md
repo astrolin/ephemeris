@@ -12,8 +12,8 @@ take a look at [ephemeris-api](https://github.com/astrolin/ephemeris-api).
 
 ## Required
 
-- Java / JDK `1.6`, `1.7`, or `1.8`
-- [Leiningen](https://leiningen.org)
+- Java `1.8`
+- [Leiningen](https://leiningen.org) `2.0`+
 
 ## Use
 
