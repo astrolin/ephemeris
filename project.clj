@@ -1,4 +1,4 @@
-(defproject ephemeris "0.1.0-SNAPSHOT"
+(defproject ephemeris "0.1.1-SNAPSHOT"
   :description "Swiss Ephemeris for Clojure"
   :url "https://github.com/astrolet/ephemeris"
   :license {:name "GPL v2+ or Swiss Ephemeris"
@@ -6,8 +6,10 @@
   :min-lein-version  "2.0.0"
   :source-paths      ["src/clj"]
   :java-source-paths ["src/java/ephemeris"]
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
                  [clj-time "0.13.0"]]
+  :jvm-opts ["--illegal-access=debug"]
+  :global-vars {*warn-on-reflection* false}
   :profiles
     {:dev
       {:dependencies [[proto-repl "0.3.1"]
