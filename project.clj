@@ -17,7 +17,7 @@
                       [midje-notifier "0.3.0"]]
        :plugins [[lein-shell "0.5.0"]
                  [lein-javac-resources "0.1.1"]
-                 [lein-midje "3.2.1"]
+                 [lein-midje "3.2.2"]
                  [lein-ancient "0.6.15"]]
        :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]
        :hooks [leiningen.javac-resources]
