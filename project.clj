@@ -7,17 +7,18 @@
   :source-paths      ["src/clj"]
   :java-source-paths ["src/java/ephemeris"]
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [clj-time "0.13.0"]]
+                 [clj-time "0.15.2"]]
   :jvm-opts ["--illegal-access=debug"]
   :global-vars {*warn-on-reflection* false}
   :profiles
     {:dev
       {:dependencies [[proto-repl "0.3.1"]
-                      [midje "1.8.3" :exclusions [org.clojure/clojure]]
-                      [midje-notifier "0.2.0"]]
+                      [midje "1.9.9" :exclusions [org.clojure/clojure]]
+                      [midje-notifier "0.3.0"]]
        :plugins [[lein-shell "0.5.0"]
                  [lein-javac-resources "0.1.1"]
-                 [lein-midje "3.2.1"]]
+                 [lein-midje "3.2.1"]
+                 [lein-ancient "0.6.15"]]
        :prep-tasks [["shell" "bin/precompile"] "javac" "compile"]
        :hooks [leiningen.javac-resources]
        :repl-options {:init-ns ephemeris.core}}
