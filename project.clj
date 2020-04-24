@@ -1,8 +1,8 @@
-(defproject ephemeris "0.1.1-SNAPSHOT"
+(defproject ephemeris "0.1.0-SNAPSHOT"
   :description "Swiss Ephemeris for Clojure"
-  :url "https://github.com/astrolet/ephemeris"
+  :url "https://github.com/astrolin/ephemeris"
   :license {:name "GPL v2+ or Swiss Ephemeris"
-            :url "https://github.com/astrolet/ephemeris/blob/active/LICENSE"}
+            :url "https://github.com/astrolin/ephemeris/blob/active/LICENSE"}
   :min-lein-version  "2.0.0"
   :source-paths      ["src/clj"]
   :java-source-paths ["src/java/ephemeris"]
