@@ -8,11 +8,11 @@
   :java-source-paths ["src/java/ephemeris"]
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [clj-time "0.15.2"]]
-  :jvm-opts ["--illegal-access=debug"]
   :global-vars {*warn-on-reflection* false}
   :profiles
     {:dev
-      {:dependencies [[proto-repl "0.3.1"]
+      {:jvm-opts ["--illegal-access=debug"]
+       :dependencies [[proto-repl "0.3.1"]
                       [midje "1.9.9" :exclusions [org.clojure/clojure]]
                       [midje-notifier "0.3.0"]]
        :plugins [[lein-shell "0.5.0"]
