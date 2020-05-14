@@ -7,6 +7,7 @@
 pom.xml*
 *.jar
 /lib/
+/out/
 /target/
 /classes/
 /checkouts/
@@ -19,11 +20,9 @@ pom.xml*
 /src/java/swisseph*/Swetest.java
 /src/java/swisseph*/Transits.java
 
-.lein-env
-.lein-plugins
-.lein-deps-sum
-.lein-failures
-.lein-repl-history
+# Leiningen
+/.lein-*
+/.nrepl-*
 
-.nrepl-port
-.nrepl-history
+# clj-kondo
+/.clj-kondo/.cache
